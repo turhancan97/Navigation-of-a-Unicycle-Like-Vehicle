@@ -1,2 +1,4 @@
-# Navigation-of-a-Unicycle-Like-Vehicle
-Navigation of a unicycle-like vehicle using dynamic window approach
+# Navigation of a Unicycle-Like Vehicle using Dynamic Window Approach
+**Author:** Turhan Can Kargın
+**Topic:** Navigation and Motion Planning in Robotics Project
+
