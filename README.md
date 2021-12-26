@@ -2,7 +2,8 @@
 * **Author:** Turhan Can Kargın
 * **Topic:** Navigation and Motion Planning in Robotics Project
 
-In this repository, you can find the source codes of the project of navigation and motion planning in robotics, which is a postgraduate course in Automatic Control and Robotics at Poznan University of Technology.
+*In this repository, you can find the source codes of the project of navigation and motion planning in robotics, which is a postgraduate course in Automatic Control and Robotics at Poznan University of Technology.*
+
 # Table of Contents
    * [Summary](#summary)
    * [How to Run This Project](#how-to-run-this-project)
@@ -40,5 +41,5 @@ In this repository, you can find the source codes of the project of navigation a
 - [X] Dynamic Window Approach Literature Review
 - [X] Similar Project Review
 - [X] Start Project on MATLAB
-- [ ] Design App on MATLAB
+- [X] Design App on MATLAB
 
