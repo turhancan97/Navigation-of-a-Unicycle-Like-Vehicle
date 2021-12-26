@@ -3,11 +3,11 @@
 * **Topic:** Navigation and Motion Planning in Robotics Project
 
 *In this repository, you can find the source codes of the project of navigation and motion planning in robotics, which is a postgraduate course in Automatic Control and Robotics at Poznan University of Technology.*
-
 # Table of Contents
    * [Summary](#summary)
    * [How to Run This Project](#how-to-run-this-project)
 	   * [Requirements](#requirements)
+	   * [Instructions](#instructions)
    * [Introduction](#introduction)
 	   * [Navigation and Motion Planning](#navigation-and-motion-planning)
 	   * [Search Algorithms](#search-algorithms)
@@ -23,6 +23,19 @@
 ## Summary
 ## How to Run This Project
 ### Requirements
+1. MATLAB R2021b
+2. MATLAB App Designer
+### Instructions
+1. Go to desired folder
+2. Open your command prompt (cmd)
+3. copy and paste `git clone https://github.com/turhancan97/Navigation-of-a-Unicycle-Like-Vehicle.git`
+4. Open your MATLAB and go to the folder you copied the project files
+5. Write `run` to the MATLAB command window
+6. You should see a window like figure below
+
+![app](https://user-images.githubusercontent.com/22428774/147417061-b8f0dc75-6599-4f49-b845-531e5f0165b9.PNG)
+> Project Interface
+
 ## Introduction
 ### Navigation and Motion Planning
 ### Search Algorithms
@@ -34,14 +47,3 @@
 ## Project Presentation
 ## Future Work
 ## References
-
-
-## To-Do's
-
-- [X] Search Algorithms Research
-- [X] Path Planning Algorithms Research
-- [X] Dynamic Window Approach Literature Review
-- [X] Similar Project Review
-- [X] Start Project on MATLAB
-- [X] Design App on MATLAB
-
