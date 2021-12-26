@@ -9,5 +9,5 @@
 - [X] Dynamic Window Approach Literature Review
 - [X] Similar Project Review
 - [X] Start Project on MATLAB
-- [] Design App on MATLAB
+- [ ] Design App on MATLAB
 
