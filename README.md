@@ -32,10 +32,10 @@
 4. Open your MATLAB and go to the folder you copied the project files
 5. Write `run` to the MATLAB command window
 6. You should see a window like figure below
-
 ![app](https://user-images.githubusercontent.com/22428774/147417177-7a193ce6-8522-48ed-a5ac-538fd84af2d4.PNG)
 > Project Interface
 
+Now, you can enter initial and goal location for the robot and start to navigation by pressing start button. 
 ## Introduction
 ### Navigation and Motion Planning
 ### Search Algorithms
