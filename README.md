@@ -33,7 +33,7 @@
 5. Write `run` to the MATLAB command window
 6. You should see a window like figure below
 
-![app](https://user-images.githubusercontent.com/22428774/147417061-b8f0dc75-6599-4f49-b845-531e5f0165b9.PNG)
+![app](https://user-images.githubusercontent.com/22428774/147417137-7d0ad944-247a-4706-a00a-8a730ad16acb.PNG)
 > Project Interface
 
 ## Introduction
