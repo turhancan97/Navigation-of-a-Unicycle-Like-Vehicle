@@ -40,5 +40,5 @@ In this repository, you can find the source codes of the project of navigation a
 - [X] Dynamic Window Approach Literature Review
 - [X] Similar Project Review
 - [X] Start Project on MATLAB
-- [ ] Design App on MATLAB
+- [X] Design App on MATLAB
 
