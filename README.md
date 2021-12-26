@@ -4,9 +4,10 @@
 
 ## To-Do's
 
-- [ ] Search Algorithms Research
-- [ ] Path Planning Algorithms Research
-- [ ] Dynamic Window Approach Literature Review
-- [ ] Similar Project Review
-- [ ] Start Project on MATLAB
+- [X] Search Algorithms Research
+- [X] Path Planning Algorithms Research
+- [X] Dynamic Window Approach Literature Review
+- [X] Similar Project Review
+- [X] Start Project on MATLAB
+- [] Design App on MATLAB
 
