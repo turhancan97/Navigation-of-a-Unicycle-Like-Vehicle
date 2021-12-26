@@ -7,6 +7,7 @@
 # Table of Contents
    * [Summary](#summary)
    * [How to Run This Project](#how-to-run-this-project)
+	   * [Requirements](#requirements)
    * [Introduction](#introduction)
 	   * [Navigation and Motion Planning](#navigation-and-motion-planning)
 	   * [Search Algorithms](#search-algorithms)
@@ -21,6 +22,7 @@
 
 ## Summary
 ## How to Run This Project
+### Requirements
 ## Introduction
 ### Navigation and Motion Planning
 ### Search Algorithms
