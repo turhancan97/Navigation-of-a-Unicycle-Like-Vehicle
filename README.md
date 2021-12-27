@@ -26,8 +26,8 @@
 
 ## Summary
 The main purpose of this project is to simulate the dynamic window approach, which is one of the local motion planning techniques, using MATLAB on a unicycle-like robot. Our second aim is to provide an instructive resource to the users who read and use this repository by briefly explaining the navigation and motion planning methods used in robotics. As a result, we will first talk about the how to run the project, then make short explanations about the motion subjects and finally show how the project looks.
-![motion_plan](https://user-images.githubusercontent.com/22428774/147509466-64db032b-8d18-4faf-900c-b98ea73edaa7.PNG)
 
+![motion_plan](https://user-images.githubusercontent.com/22428774/147509580-27183e07-a50e-434d-805c-032e1093ab30.PNG)
 > Example motion planning figure
 
 ## How to Run This Project
@@ -41,6 +41,7 @@ The main purpose of this project is to simulate the dynamic window approach, whi
 4. Open your MATLAB and go to the folder you copied the project files
 5. Write `run` to the MATLAB command window
 6. You should see a window like figure below
+
 ![app](https://user-images.githubusercontent.com/22428774/147417177-7a193ce6-8522-48ed-a5ac-538fd84af2d4.PNG)
 > Project Interface
 
