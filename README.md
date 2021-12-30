@@ -224,16 +224,16 @@ The robot used in this simulation is modeled as a rigid point moving in a 2-D co
 ![local_global](https://user-images.githubusercontent.com/22428774/147775957-a84c5dde-be25-44ca-837b-812195c1ca3b.PNG)
 > Robot Point in 2-D Global Reference Frame.
 
-In the simulation, starting points for the x, y co-ordinate pair was (0, 0) and **phi** = pi/2. In order to yield a near realistic motion model for the robot point, motion variables were defined to magnitudes that constrain motion as shown in Table below:
+In the simulation, starting points for the x, y co-ordinate pair was (0, 0) and **phi** = pi/2. In order to yield a near realistic motion model for the robot point, motion variables were defined to magnitudes that constrain motion as shown in table below:
 
-|Kinematic Variables|Magnitude|
-|----------------|-------------------------------|-----------------------------|
-|Max Linear Velocity (m/s)|1|
-|Max Angular Velocity(rad/s)|0.3491|
-|Max Acceleration (m/s^2)|0.2|
-|Maximum Angular Acceleration (rad/s^2)|0.8727|
-|Linear velocity resolution (m/s)|0.01|
-|Angular velocity resolution (rad/s)|0.0175|
+| Kinematic Variables                                              | Magnitude|
+| ------------------------------------------------------- | ----- |
+| Max Linear Velocity (m/s)             | 1     |
+| Max Angular Velocity(rad/s)    | 0.3491     |
+| Max Acceleration (m/s^2)         | 0.2     |
+| Maximum Angular Acceleration (rad/s^2) | 0.8727     |
+| Linear velocity resolution (m/s)              | 0.01     |
+| Angular velocity resolution (rad/s)      | 0.0175     |
 
 The Linear and angular velocity resolution are essentially the smallest velocity increments with respect to time. The point movement was simply guided by the linear and angular velocity pairs that maximized the navigation function per time step.
 
