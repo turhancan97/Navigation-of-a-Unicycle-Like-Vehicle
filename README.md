@@ -21,7 +21,7 @@
 			   * [DWA in Robotic Operation System Navigation Stack](#dwa-in-robotic-operation-system-navigation-stack)
 			   * [In Short, The Algorithm Behind Dwa](#in-short-the-algorithm-behind-dwa)
 * [Methodology](#methodology)
-	* [DynamicWindow Approach Simulation](#dynamic-window-approach-simulation)
+	* [Dynamic Window Approach Simulation](#dynamic-window-approach-simulation)
 		* [Simulation Environment](#simulation-environment)
 		* [Robot Kinematics](#robot-kinematics)
 		* [Updating the Robot Pose](#updating-the-robot-pose)
@@ -211,7 +211,7 @@ The basic idea of the Dynamic Window Approach (DWA) algorithm is as follows:
 > Different parts of the dynamic window approach [8]
 ##### DWA in Practice
 ## Methodology
-### DynamicWindow Approach Simulation
+### Dynamic Window Approach Simulation
 #### Simulation Environment
 A navigation simulation was developed in MATLAB using static obstacles at different (x, y) coordinate locations as shown below. The objective of the simulation was to evaluate and visualize overall trajectories from robot start point to the goal location. Also, simple app was designed for the simulation by using MATLAB App Designer as shown below.
 
