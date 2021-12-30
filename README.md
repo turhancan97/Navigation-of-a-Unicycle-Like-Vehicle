@@ -1,5 +1,5 @@
 # Navigation of a Unicycle-Like Vehicle using Dynamic Window Approach
-* **Author:** Turhan Can Kargın
+* **Author:** Turhan Can Kargın, Adil Mortepe
 * **Topic:** Navigation and Motion Planning in Robotics Course Project
 
 *In this repository, you can find the source codes of the project of navigation and motion planning in robotics, which is a postgraduate course in Automatic Control and Robotics at Poznan University of Technology.*
