@@ -13,20 +13,23 @@ disp('Navigation of a Unicycle-Like Vehicle has Started!!')
 x=[0 0 pi/2 0 0]';% Robot initial state [x(m),y(m),yaw(Rad),v(m/s),ω(rad/s)]
 goal=[1,1];% Goal position [x(m),y(m)]
 % Obstacle list [x(m) y(m)]
-obstacle = load('obstacle.txt');
+obstacle = load('obstacle.txt'); % You can load the obstacle from text file
       
 obstacleR=0.5;% Radius of obstacle for collision detection
 global dt; dt=0.1; % Stepping time [s]
 
-% Robotic dynamic model
-% [Maximum speed [m / s], Maximum turning speed [rad / s], 
-% Maximum acceleration / deceleration speed [m / ss], 
-% Maximum acceleration / deceleration turning speed [rad / ss],
-% Velocity resolution [m / s], turning velocity resolution [rad / s]]
+% %%%%Robotic Kinematic Variable%%%%%%%
+% Maximum Linear Velocity [m / s]
+% Maximum Angular Velocity [rad / s], 
+% Maximum acceleration / deceleration [m / s^2], 
+% Maximum Angular acceleration / deceleration [rad / s^2],
+% Velocity resolution [m / s]
+% Angular velocity resolution [rad / s]]
+
 Kinematic=[1.0,toRadian(20.0),0.2,toRadian(50.0),0.01,toRadian(1)];
 
 % Evaluation function parameters [heading,dist,velocity,predictDT]
-evalParam=[0.1,0.2,0.1,3.0];
+evalParam=[0.1,0.2,0.1,3.0]; % alpha, beta, evaldt
 area=[-1 11 -1 11];% The size of the simulation area [xmin xmax ymin ymax]
 
 % simulation result
