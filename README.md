@@ -162,17 +162,17 @@ In the section so far, general to specific explanations have been made on naviga
 ##### Dynamic Window Approach
 A popular local planner is the Dynamic Window Approach (DWA) algorithm which is basically a local motion planning that works well in dynamic environments. In most physical applications of robotic navigation, global and local planning are combined to generate optimal and feasible waypoints for robotic navigation. For example, the popular Robotic Operating System (ROS) used by researchers and hobbyist alike to prototype robotic designs, uses the Dijkstra algorithm as a global planner and the DWA as a local planner in its motion planning architecture.
 
-The DWA is a reactive collision avoidance algorithm that incorporates the geometry and motion dynamics of the robot. As with most other local planners, the goal of this planning algorithm is to generate feasible motion and steering commands in short time intervals that direct the robot to the goal. Based on the kinematic limitations of the robot, a 2-D dimensional velocity search space is created by considering all possible velocity pairs ($v$,$w$) that are reachable based on its kinematics. This search space ($V_s$) is then limited to only select velocities pairs that enable the robot to come to a stop in the vicinity of an obstacle considering the max deceleration of the robot.
+The DWA is a reactive collision avoidance algorithm that incorporates the geometry and motion dynamics of the robot. As with most other local planners, the goal of this planning algorithm is to generate feasible motion and steering commands in short time intervals that direct the robot to the goal. Based on the kinematic limitations of the robot, a 2-D dimensional velocity search space is created by considering all possible velocity pairs (v, w) that are reachable based on its kinematics. This search space (Vs) is then limited to only select velocities pairs that enable the robot to come to a stop in the vicinity of an obstacle considering the max deceleration of the robot.
 
-These velocities are known as admissible velocities ($V_a$). A velocity pair is considered admissible based on the formula below:
+These velocities are known as admissible velocities (Va). A velocity pair is considered admissible based on the formula below:
 
 $V_a\:=\left(v,\:w\right)|v\le \sqrt{2\cdot dist\left(v,w\right)\cdot \dot{v_b}}\wedge \:w\:\le \sqrt{2\cdot \:dist\left(v,w\right)\cdot \:\dot{w_b}}$
 
-Where ($v$, $w$) are the linear (v) and angular (w) velocity pairs. Given a velocity pair, the subfunction dist(v, w) generates the distance to the closest obstacle from the robot. Also, given that $v_b$ and $w_b$ represent the linear and angular accelerations for breakage respectively, based on the expression above, a velocity pair is admissible if the robot can come to a stop before colliding into an obstacle. Once admissible velocity pairs have been established, a dynamic window is created. The dynamic window is a sub velocity search space constituting velocity pairs from $V_d$ that are reachable within the next time interval given acceleration constraints. Velocity pairs are consideredr eachable based on formula below:
+Where (v, w) are the linear (v) and angular (w) velocity pairs. Given a velocity pair, the subfunction dist(v, w) generates the distance to the closest obstacle from the robot. Also, given that vb and wb represent the linear and angular accelerations for breakage respectively, based on the expression above, a velocity pair is admissible if the robot can come to a stop before colliding into an obstacle. Once admissible velocity pairs have been established, a dynamic window is created. The dynamic window is a sub velocity search space constituting velocity pairs from Vd that are reachable within the next time interval given acceleration constraints. Velocity pairs are consideredr eachable based on formula below:
 
 $V_d\:=\:\left(v,w\right)|\:v\in \:\left[v_a\:-\:\dot{v}\cdot \:t,\:v_a\:+\:\dot{v}\cdot \:t\right]\wedge \:\:w\in \:\left[w_a-\dot{w}\cdot \:t,\:w_a\:+\:\dot{w}\cdot \:t\right]$
 
-Velocity pairs in the dynamic window $V_d$ depend on selected admissible pairs and time. Based on formula of $V_d$, sets in $V_d$ are time based, therefore velocities that are reachable given the current time step and current velocity, which constitute the dynamic window. Typically, a set of possible trajectories is generated at every time step using all velocity pairs in the dynamic window. The global velocity search space constitutes the possible velocities according to the specifications of the robot ($V_s$), admissible velocities ($V_a$) and finally the dynamic window ($V_d$)
+Velocity pairs in the dynamic window Vd depend on selected admissible pairs and time. Based on formula of Vd, sets in Vd are time based, therefore velocities that are reachable given the current time step and current velocity, which constitute the dynamic window. Typically, a set of possible trajectories is generated at every time step using all velocity pairs in the dynamic window. The global velocity search space constitutes the possible velocities according to the specifications of the robot (Vs), admissible velocities (Va) and finally the dynamic window (Vd)
 
 $V_{space} = V_s \cap V_a \cap V_d$
 
@@ -184,9 +184,9 @@ In the space of these possible velocity pairs within the dynamic window that gui
 
 $G(v,w) = \alpha \cdot heading(v,w) + \beta \cdot dist(v,w) + \gamma \cdot vel(v,w)$
 
-Recollect that the v, w pairs are selected from the dynamic window ($V_d$), optimal velocity pairs are those that maximize G(v, w). The sub-function heading(v, w) evaluates the positioning of the robot calculated by determining the angle of the goal point with reference to the current heading direction of the robot. The dist(v, w) evaluates the distance to the closest obstacle on a path and the vel(v, w) expression represents the translational velocity of the robot. In some cases, the velocity(v, w) is used to measure the forward progress of the robot. The weighting constants $\alpha,\beta,\gamma$ are values between {0, 1} that affect optimization of the navigation function which as a result affects the trajectory of the robot from start position to the target. All 3 sub-functions in the navigation function and their weights contribute to the optimal velocity pair selection which define the trajectory per time step.
-![traj](https://user-images.githubusercontent.com/22428774/147765311-b05cd6c5-66ec-4d27-82d5-74f3800630f1.PNG)
+Recollect that the v, w pairs are selected from the dynamic window (Vd), optimal velocity pairs are those that maximize G(v, w). The sub-function heading(v, w) evaluates the positioning of the robot calculated by determining the angle of the goal point with reference to the current heading direction of the robot. The dist(v, w) evaluates the distance to the closest obstacle on a path and the vel(v, w) expression represents the translational velocity of the robot. In some cases, the velocity(v, w) is used to measure the forward progress of the robot. The weighting constants **alpha, beta** and **gamma** are values between {0, 1} that affect optimization of the navigation function which as a result affects the trajectory of the robot from start position to the target. All 3 sub-functions in the navigation function and their weights contribute to the optimal velocity pair selection which define the trajectory per time step.
 
+![traj](https://user-images.githubusercontent.com/22428774/147765311-b05cd6c5-66ec-4d27-82d5-74f3800630f1.PNG)
 > Trajectory roll-out based on v, w pair selection
 
 Assigning higher weights to the distance to obstacle and forward velocity functions results in trajectories that do not move towards the goal. Also, bias towards the angle and velocity means the robot is not incentivized to maintain a safe distance away from obstacles within its path. Moreover, the navigation function can be adjusted to augment the selection of trajectories based on the use case. A prime example is an application of the DWA for global obstacle avoidance in which the navigation function selects velocity pairs based on maximization object of velocity, a reward to stay within an optimized global path and a reward for reaching the goal [10].
@@ -214,42 +214,46 @@ The basic idea of the Dynamic Window Approach (DWA) algorithm is as follows:
 ### DynamicWindow Approach Simulation
 #### Simulation Environment
 A navigation simulation was developed in MATLAB using static obstacles at different (x, y) coordinate locations as shown below. The objective of the simulation was to evaluate and visualize overall trajectories from robot start point to the goal location. Also, simple app was designed for the simulation by using MATLAB App Designer as shown below.
+
 ![app](https://user-images.githubusercontent.com/22428774/147774747-70f92ae3-8723-4e8c-8c82-bd764b812231.PNG)
 ![sim](https://user-images.githubusercontent.com/22428774/147774749-d906b228-a318-41cc-93e7-8096f7984ce7.PNG)
 > App and Simulation Environment
+
 #### Robot Kinematics
-The robot used in this simulation is modeled as a rigid point moving in a 2-D co-ordinate frame, as a result, physical variables such as wheel rotation, friction, differential speeds at both wheels were ignored. Since physical constraints were excepted, motion control strategies to maintain stable locomotion in the event of environmental disturbances were also ignored. The robot’s position and orientation was defined by its point location in a 2-D reference frame (x, y) and an angle $\phi$ . Angle $\phi$ represents the relative angle of the robot with respect to the global reference frame, as shown in figure below, where $Y_g$, $X_g$ are the global frames and $Y_l$, $X_l$ are the local frames.
+The robot used in this simulation is modeled as a rigid point moving in a 2-D co-ordinate frame, as a result, physical variables such as wheel rotation, friction, differential speeds at both wheels were ignored. Since physical constraints were excepted, motion control strategies to maintain stable locomotion in the event of environmental disturbances were also ignored. The robot’s position and orientation was defined by its point location in a 2-D reference frame (x, y) and an angle **phi** . Angle **phi** represents the relative angle of the robot with respect to the global reference frame, as shown in figure below, where Yg, Xg are the global frames and Yl, Xl are the local frames.
 ![local_global](https://user-images.githubusercontent.com/22428774/147775957-a84c5dde-be25-44ca-837b-812195c1ca3b.PNG)
 > Robot Point in 2-D Global Reference Frame.
 
-In the simulation, starting points for the x, y co-ordinate pair was (0, 0) and $\phi$ = $\frac{\pi}{2}$. In order to yield a near realistic motion model for the robot point, motion variables were defined to magnitudes that constrain motion as shown in Table below:
+In the simulation, starting points for the x, y co-ordinate pair was (0, 0) and **phi** = pi/2. In order to yield a near realistic motion model for the robot point, motion variables were defined to magnitudes that constrain motion as shown in Table below:
 
 |Kinematic Variables|Magnitude|
 |----------------|-------------------------------|-----------------------------|
-|Max Linear Velocity ($\frac{m}{s}$)|$1$            |
-|Max Angular Velocity($\frac{rad}{s}$)|$0.3491$            |
-|Max Acceleration ($\frac{m}{s^2}$)|$0.2$|
-|Maximum Angular Acceleration ($\frac{rad}{s^2}$)|$0.8727$ |
-|Linear velocity resolution ($\frac{m}{s}$)|$0.01$ |
-|Angular velocity resolution ($\frac{rad}{s}$)|$0.0175$ |
+|Max Linear Velocity (m/s)|1|
+|Max Angular Velocity(rad/s)|0.3491|
+|Max Acceleration (m/s^2)|0.2|
+|Maximum Angular Acceleration (rad/s^2)|0.8727|
+|Linear velocity resolution (m/s)|0.01|
+|Angular velocity resolution (rad/s)|0.0175|
 
 The Linear and angular velocity resolution are essentially the smallest velocity increments with respect to time. The point movement was simply guided by the linear and angular velocity pairs that maximized the navigation function per time step.
 
 #### Updating the Robot Pose
-At any time step increment, the position and orientation (pose) of the robot, identified by (x, y) and $\phi$ needs to be defined and updated. This update is basically guided by kinematic equations define the linear and angular velocities. The position co-ordinates (x, y) and $\phi$ are updated using the expression below respectively.
+At any time step increment, the position and orientation (pose) of the robot, identified by (x, y) and **phi** needs to be defined and updated. This update is basically guided by kinematic equations define the linear and angular velocities. The position co-ordinates (x, y) and **phi** are updated using the expression below respectively.
 
 1. $X_{i+1} = X_i + V\cdot cos(\phi_i)\cdot dt$
 2. $Y_{i+1} = Y_i + V\cdot sin(\phi_i)\cdot dt$
 3. $\phi_{i+1} = \phi_i + w*dt$
 
-Here, (Xi, Yi) and $\phi_i$ represent the robot’s current position and orientation in the 2-D reference frame, dt represents the time increment and w is the angular velocity .
+Here, (Xi, Yi) and **phi_i** represent the robot’s current position and orientation in the 2-D reference frame, dt represents the time increment and w is the angular velocity .
 
  A state vector is defined to describe the state of the robot on the basis of the robot current co-ordinate, yaw angle and velocity pairs (v, w). Essentially, this vector is updated per time step as an appropriate velocity pair that maximizes the navigation function is chosen.
  
 #### Generating the Dynamic Window
-A velocity search space was generated for the robot using motion settings from Table of Kinematic which is above to select safe velocity pairs as described above as the formula of $V_d$. A vector $V_s$ was defined to store values of the max and minimum linear and angular velocities allowable. Minimum linear and angular velocities in this case are 0 and the negative of the max angular velocity. From this allowable velocity vector, a vector $V_a$ is generated that includes the current velocity, time, and resolution limits to generate a search space with only velocity pairs that are reachable within the next time step dt. The dynamic window is generated from this velocity search space vector Va. Furthermore, vectors Va and Vd are regularly updated at every time step as the robot updates its pose.
+A velocity search space was generated for the robot using motion settings from Table of Kinematic which is above to select safe velocity pairs as described above as the formula of Vd. A vector Vs was defined to store values of the max and minimum linear and angular velocities allowable. Minimum linear and angular velocities in this case are 0 and the negative of the max angular velocity. From this allowable velocity vector, a vector Va is generated that includes the current velocity, time, and resolution limits to generate a search space with only velocity pairs that are reachable within the next time step dt. The dynamic window is generated from this velocity search space vector Va. Furthermore, vectors Va and Vd are regularly updated at every time step as the robot updates its pose.
+
 #### Calculating the Robot Heading
-The Heading function keeps the robot facing towards the goal. This sub-function is evaluated by 180-$\theta_{corr}$. The variable $\theta_{corr}$ is the angle between the robot local horizontal reference frame and a reference vertical line at 90 degree from the global horizontal reference frame Xg. $\theta$ is calculated by taking the `arctan` of the difference between the corresponding (x, y) co-ordinate locations of the robot and the goal. A perfect alignment between and the goal point would yield approximately or close to 0 for $\theta_{corr}$. Therefore, keeping this value at a minimum would keep the robot at an orientation facing the goal at every time step. Since the goal of the DWA algorithm is to maximize the overall navigation per time step, if $\theta$ is large then the heading is penalized, so velocity control actions that minimize the value of $\theta_{corr}$ are always desired.
+The Heading function keeps the robot facing towards the goal. This sub-function is evaluated by 180-**theta_corr**. The variable **theta_corr** is the angle between the robot local horizontal reference frame and a reference vertical line at 90 degree from the global horizontal reference frame Xg. **theta** is calculated by taking the `arctan` of the difference between the corresponding (x, y) co-ordinate locations of the robot and the goal. A perfect alignment between and the goal point would yield approximately or close to 0 for **theta_corr**. Therefore, keeping this value at a minimum would keep the robot at an orientation facing the goal at every time step. Since the goal of the DWA algorithm is to maximize the overall navigation per time step, if **theta** is large then the heading is penalized, so velocity control actions that minimize the value of **theta_corr** are always desired.
+
 ![angle](https://user-images.githubusercontent.com/22428774/147783821-9058a5c6-0ac2-44ff-bf96-ad059c664123.PNG)
 
 > Robot Heading on a 2-D Coordinate.
