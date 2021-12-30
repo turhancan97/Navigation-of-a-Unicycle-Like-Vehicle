@@ -56,10 +56,14 @@ As a result, the main purpose of this project is to simulate the dynamic window 
 5. Write `run` to the MATLAB command window
 6. You should see a window like figure below
 
-![app](https://user-images.githubusercontent.com/22428774/147417177-7a193ce6-8522-48ed-a5ac-538fd84af2d4.PNG)
+![app](https://user-images.githubusercontent.com/22428774/147792864-f3e1e848-c5bb-4725-8392-769a76d6e09e.PNG)
+
 > Project Interface
 
 Now, you can enter initial and goal location for the robot and start to navigation by pressing start button. 
+
+It should be noted that since the 2D navigation space is 12x12 in size, the entered value must be in the range of 0-12, otherwise the interface will ask us to enter the value again. In addition, if the initial and goal locations are the same, interface again will want us to enter new values. Also, if you want to change the positions of the obstacles in the 2D navigation space, you can open the `obstacle.txt` file and change the position of the obstacles as you want from there.
+
 ## Introduction
 A robot is a versatile mechanical device - for example, a manipulator arm, a multi-joint multi-fingered hand, a wheeled or legged vehicle, a free-flying platform, or a combination of these - equipped with actuators and sensors under the control of a computing system. It operates in a workspace within the real world. This workspace is populated by physical objects and is subject to the laws of nature. The robot performs tasks by executing motions in the workspace [1].
 
@@ -99,6 +103,7 @@ There are several basic ingredients that arise throughout virtually all of the t
 	* Feasibility
 	* Optimality
 * A plan
+
 #### Motion Planning Concepts
 A basic motion planning problem is to compute a continuous path that connects a start configuration S and a goal configuration G, while avoiding collision with known obstacles. The robot and obstacle geometry is described in a 2D or 3D workspace, while the motion is represented as a path in (possibly higher-dimensional) configuration space.
 1. **Configuration space** 
@@ -113,6 +118,7 @@ The free space or free configuration space is the set of configurations at which
 Target space is a subspace of free space which denotes where we want the robot to move to. In global motion planning, target space is observable by the robot's sensors. However, in local motion planning, the robot cannot observe the target space in some states. To solve this problem, the robot goes through several virtual target spaces, each of which is located within the observable area (around the robot). A virtual target space is called a sub-goal.
 4. Obstacle space
 Obstacle space is a space that the robot can not move to. Obstacle space **is not** opposite of free space.
+
 ### Classification of motion planning algorithms
 #### Sampling Based Planning Algorithms
 A sampling-based planning algorithm finds paths by sampling random points in the environment. Sampling Based Algorithms are as follow:
@@ -206,6 +212,7 @@ The basic idea of the Dynamic Window Approach (DWA) algorithm is as follows:
 4.  Pick the highest-scoring trajectory and send the associated velocity to the mobile base.
 5.  Rinse and repeat.
 ##### In Short, The Algorithm Behind Dwa
+
 ![algo](https://user-images.githubusercontent.com/22428774/147766828-593483ce-b871-4598-a16c-33adb31a7058.PNG)
 > Different parts of the dynamic window approach [8]
 
@@ -221,6 +228,7 @@ A navigation simulation was developed in MATLAB using static obstacles at differ
 
 #### Robot Kinematics
 The robot used in this simulation is modeled as a rigid point moving in a 2-D co-ordinate frame, as a result, physical variables such as wheel rotation, friction, differential speeds at both wheels were ignored. Since physical constraints were excepted, motion control strategies to maintain stable locomotion in the event of environmental disturbances were also ignored. The robot’s position and orientation was defined by its point location in a 2-D reference frame (x, y) and an angle **phi** . Angle **phi** represents the relative angle of the robot with respect to the global reference frame, as shown in figure below, where Yg, Xg are the global frames and Yl, Xl are the local frames.
+
 ![local_global](https://user-images.githubusercontent.com/22428774/147775957-a84c5dde-be25-44ca-837b-812195c1ca3b.PNG)
 > Robot Point in 2-D Global Reference Frame.
 
@@ -262,6 +270,32 @@ The distance to obstacle function measures the distance to the closest obstacle 
 #### Generating Cost Function
 Generally, cost functions are modeled as error functions between predictions and actual values. In this case, the cost function is modeled using metrics that define the navigation simulation.
 ## Project Presentation
+Simulation of the project (Navigation of a Unicycle-Like Vehicle using Dynamic Window Approach) was performed on MATLAB. As seen below, a simple and plain App has been designed using MATLAB APP Designer for the convenience of those who will perform this simulation.
+
+![app](https://user-images.githubusercontent.com/22428774/147792864-f3e1e848-c5bb-4725-8392-769a76d6e09e.PNG)
+> Interface of the project
+
+The interface first asks us to enter **initial and goal location** for the robot. These location will be on x and y axis. Since the size of the 2D Navigation space is 12x12, we need to enter values in the range of 0-12. If a value other than 0-12 is entered, the interface asks us to change the value.  Also, if the initial and goal locations are the same, interface again will want us to enter new values.
+
+After you enter tha initial and goal locations for the robot, then you can press the **start button**. When you press the **start button**, simulation will start as you can see below.
+
+![working_app](https://user-images.githubusercontent.com/22428774/147793297-b38e2a8e-f6e0-4d12-8f2c-8fa3c050e6fe.PNG)
+
+You can pause and continue the simulation whenever you want by pressing **pause** and **continue** **button**. In addition, you can stop the simulation by pressing the **stop button**, even if the robot didn't reach the goal location. 
+
+When the robot reached the goal location, interface of the app will show the plot of trajectory (x, y), linear velocity (v), angular velocity (w), and orientation angle (phi). Besides, you will see the time it takes for the robot to reach the goal on the **Elapsed Time** section. See figure below:
+
+![app_son](https://user-images.githubusercontent.com/22428774/147793750-2550774c-7fe3-4ee0-9380-6bc4b31916ad.PNG)
+
+> Interface after robot reached the goal location
+
+You can see the simulation figure for the robot which has reached the goal location below.  
+
+![complated](https://user-images.githubusercontent.com/22428774/147793945-9acb35f7-907a-4a69-afc9-a3cb790f0c51.PNG)
+> When the robot has reach the goal location
+
+![project_gif](https://user-images.githubusercontent.com/22428774/147794331-fec7ca52-92e3-48a9-b3a0-276d72a2820c.gif)
+> Simulation
 
 ## Future Work
 Parameter selectıon ın the dynamıc wındow approach robot collısıon avoıdance algorıthm can be made by usıng bayesıan optımızatıon.
