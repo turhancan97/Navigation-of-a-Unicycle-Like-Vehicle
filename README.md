@@ -166,15 +166,15 @@ The DWA is a reactive collision avoidance algorithm that incorporates the geomet
 
 These velocities are known as admissible velocities (Va). A velocity pair is considered admissible based on the formula below:
 
-$V_a\:=\left(v,\:w\right)|v\le \sqrt{2\cdot dist\left(v,w\right)\cdot \dot{v_b}}\wedge \:w\:\le \sqrt{2\cdot \:dist\left(v,w\right)\cdot \:\dot{w_b}}$
+![e1](https://user-images.githubusercontent.com/22428774/147787213-7425a05b-347b-463f-b4c1-b990d71ecd85.png)
 
 Where (v, w) are the linear (v) and angular (w) velocity pairs. Given a velocity pair, the subfunction dist(v, w) generates the distance to the closest obstacle from the robot. Also, given that vb and wb represent the linear and angular accelerations for breakage respectively, based on the expression above, a velocity pair is admissible if the robot can come to a stop before colliding into an obstacle. Once admissible velocity pairs have been established, a dynamic window is created. The dynamic window is a sub velocity search space constituting velocity pairs from Vd that are reachable within the next time interval given acceleration constraints. Velocity pairs are consideredr eachable based on formula below:
 
-$V_d\:=\:\left(v,w\right)|\:v\in \:\left[v_a\:-\:\dot{v}\cdot \:t,\:v_a\:+\:\dot{v}\cdot \:t\right]\wedge \:\:w\in \:\left[w_a-\dot{w}\cdot \:t,\:w_a\:+\:\dot{w}\cdot \:t\right]$
+![e2](https://user-images.githubusercontent.com/22428774/147787215-4957a713-11f1-4731-a4b7-c617edb64df3.png)
 
 Velocity pairs in the dynamic window Vd depend on selected admissible pairs and time. Based on formula of Vd, sets in Vd are time based, therefore velocities that are reachable given the current time step and current velocity, which constitute the dynamic window. Typically, a set of possible trajectories is generated at every time step using all velocity pairs in the dynamic window. The global velocity search space constitutes the possible velocities according to the specifications of the robot (Vs), admissible velocities (Va) and finally the dynamic window (Vd)
 
-$V_{space} = V_s \cap V_a \cap V_d$
+![e3](https://user-images.githubusercontent.com/22428774/147787217-182aca54-6c25-4665-90e6-c1ca5b9de435.png)
 
 ![dynamic](https://user-images.githubusercontent.com/22428774/147764707-574ec76c-e733-4581-b5d9-c6494126db0f.PNG)
 
@@ -182,7 +182,7 @@ $V_{space} = V_s \cap V_a \cap V_d$
 
 In the space of these possible velocity pairs within the dynamic window that guide the robot through a path, there is an optimal velocity pair that yields the best local trajectory in the current time frame. This optimization problem is guided by a heuristic navigation function below:
 
-$G(v,w) = \alpha \cdot heading(v,w) + \beta \cdot dist(v,w) + \gamma \cdot vel(v,w)$
+![e4](https://user-images.githubusercontent.com/22428774/147787210-5beb47c2-ffad-4be0-a2c0-c894b3a343e0.png)
 
 Recollect that the v, w pairs are selected from the dynamic window (Vd), optimal velocity pairs are those that maximize G(v, w). The sub-function heading(v, w) evaluates the positioning of the robot calculated by determining the angle of the goal point with reference to the current heading direction of the robot. The dist(v, w) evaluates the distance to the closest obstacle on a path and the vel(v, w) expression represents the translational velocity of the robot. In some cases, the velocity(v, w) is used to measure the forward progress of the robot. The weighting constants **alpha, beta** and **gamma** are values between {0, 1} that affect optimization of the navigation function which as a result affects the trajectory of the robot from start position to the target. All 3 sub-functions in the navigation function and their weights contribute to the optimal velocity pair selection which define the trajectory per time step.
 
@@ -207,8 +207,8 @@ The basic idea of the Dynamic Window Approach (DWA) algorithm is as follows:
 5.  Rinse and repeat.
 ##### In Short, The Algorithm Behind Dwa
 ![algo](https://user-images.githubusercontent.com/22428774/147766828-593483ce-b871-4598-a16c-33adb31a7058.PNG)
-
 > Different parts of the dynamic window approach [8]
+
 ##### DWA in Practice
 ## Methodology
 ### Dynamic Window Approach Simulation
@@ -240,9 +240,7 @@ The Linear and angular velocity resolution are essentially the smallest velocity
 #### Updating the Robot Pose
 At any time step increment, the position and orientation (pose) of the robot, identified by (x, y) and **phi** needs to be defined and updated. This update is basically guided by kinematic equations define the linear and angular velocities. The position co-ordinates (x, y) and **phi** are updated using the expression below respectively.
 
-1. $X_{i+1} = X_i + V\cdot cos(\phi_i)\cdot dt$
-2. $Y_{i+1} = Y_i + V\cdot sin(\phi_i)\cdot dt$
-3. $\phi_{i+1} = \phi_i + w*dt$
+![e5](https://user-images.githubusercontent.com/22428774/147787212-41616c33-2ecc-44b0-9e6d-59be06d5e7cf.png)
 
 Here, (Xi, Yi) and **phi_i** represent the robot’s current position and orientation in the 2-D reference frame, dt represents the time increment and w is the angular velocity .
 
