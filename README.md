@@ -5,7 +5,7 @@
 
 *In this repository, you can find the source codes of the project of navigation and motion planning in robotics, which is a postgraduate course in Automatic Control and Robotics at Poznan University of Technology.*
 
-***Project Video:***
+***Please Click The Picture Below For the Project Video***
 
 [![Youtube_Cover](https://user-images.githubusercontent.com/22428774/147855837-cef86c97-20e1-46c1-b66c-acfb738e9398.png)](https://www.youtube.com/watch?v=Xq5NMQ2SGNM)
 
